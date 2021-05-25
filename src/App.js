@@ -1,9 +1,9 @@
 import './App.css';
-import axios from 'axios'
+import {Shortener} from './components/shortener'
 function App() {
   return (
     <div className="App">
-      
+      <Shortener />
     </div>
   );
 }
