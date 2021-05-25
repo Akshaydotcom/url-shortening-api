@@ -12,15 +12,15 @@ export const Shortener=()=>{
             }
         })
     }
-
+   
     return(
         <div>
             <input type="text" /><button onClick={handleClick}>Shorten it!</button>
             {(arrayOfOriginalLinks.length!==0 && arrayOfShortLinks.length!==0) && <div>
-                    {arrayOfOriginalLinks.map((link1)=><p>{link1}</p>)}
+                    {arrayOfOriginalLinks.map((link1)=>(<p >{link1}</p>))}
                 </div>}
             {(arrayOfOriginalLinks.length!==0 && arrayOfShortLinks.length!==0) && <div>
-                    {arrayOfShortLinks.map((link1)=><p>{link1}</p>)}
+                    {arrayOfShortLinks.map((link1)=><p>{link1}<button onClick={navigator.clipboard.writeText(link1)}>Copy to Clipboard</button></p>)}
                 </div>}
         </div>
     )
