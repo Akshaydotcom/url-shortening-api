@@ -8,9 +8,15 @@ export const Shortener=()=>{
     let x2=sessionStorage.getItem('shortLink')
     useEffect(()=>{
         if(x1 && x1.split(',').length>1)
-        { setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,x1.split(",")])}
+        { x1.split(',').forEach(element=> setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,element]))
+           }
         if(x2 && x2.split(',').length>1)
-        { setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,x2.split(',')])}
+        {
+            x2.split(',').forEach(element => {
+                setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,element])
+            });
+            
+        }
     },[])
     
     const handleClick=()=>{
