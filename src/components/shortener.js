@@ -35,7 +35,7 @@ export const Shortener=()=>{
     useEffect(()=>{
         sessionStorage.setItem('shortLink',arrayOfShortLinks.toString())
     },[arrayOfShortLinks])
-   console.log(x1,x2)
+   
     return(
         <div>
             <input type="text" placeholder="Shorten a link here.." ref={textRef}/><button onClick={handleClick}>Shorten it!</button>
