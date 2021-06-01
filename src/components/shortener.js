@@ -1,7 +1,11 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import axios from 'axios'
+import Button from '@material-ui/core/Button'
+import Backdrop  from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
 export const Shortener=()=>{
     const textRef=useRef(null)
+    const [inProgress, setInProgress]=useState(false)
     let [arrayOfOriginalLinks,setArrayOfOriginalLinks]=React.useState([])
     let [arrayOfShortLinks, setArrayOfShortLinks]=React.useState([])
     let x1=sessionStorage.getItem('originalLink')
@@ -20,11 +24,13 @@ export const Shortener=()=>{
     },[])
     
     const handleClick=()=>{
+        setInProgress(true)
         axios.get('https://api.shrtco.de/v2/shorten?url='+textRef.current.value)
         .then(res=>{
             if(res.data.ok===true){
             setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,res.data.result.original_link])
             setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,res.data.result.full_short_link])
+            setInProgress(false)
             }
         })
     }
@@ -38,13 +44,14 @@ export const Shortener=()=>{
    
     return(
         <div>
-            <input type="text" placeholder="Shorten a link here.." ref={textRef}/><button onClick={handleClick}>Shorten it!</button>
+            <Backdrop open={inProgress} style={{zIndex:'100'}}><CircularProgress /></Backdrop>
+            <input placeholder="Shorten a link here.." ref={textRef}/><Button variant="contained" color="primary" onClick={handleClick}>Shorten it!</Button>
             {(arrayOfOriginalLinks.length!==0) && <div>
                     {arrayOfOriginalLinks.map((link1)=>(<p >{link1}</p>))}
                 </div>}
             {(arrayOfShortLinks.length!==0) && <div>
                     {arrayOfShortLinks.map((link2)=>
-                    <p>{link2}<button onClick={()=>navigator.clipboard.writeText(link2)}>Copy to Clipboard</button></p>)}
+                    <p>{link2}<Button color="primary" onClick={()=>navigator.clipboard.writeText(link2)}>Copy to Clipboard</Button></p>)}
                 </div>}
         </div>
     )
