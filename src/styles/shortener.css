@@ -1,0 +1,29 @@
+.inputText{
+    padding:8px;
+    margin-right:24px;
+}
+.originalLink{
+    display:inline-block;
+    margin-right:10%;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.originalLink p{
+    margin:0px;
+    margin-top:0px;
+    margin-bottom: 15px;
+}
+.shortenedLink{
+    display: inline-block;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.shortenedLink p {
+    margin:0px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.shortenedLink button{
+    padding:0px;
+}

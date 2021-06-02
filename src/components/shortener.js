@@ -3,6 +3,7 @@ import axios from 'axios'
 import Button from '@material-ui/core/Button'
 import Backdrop  from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import '../styles/shortener.css'
 export const Shortener=()=>{
     const textRef=useRef(null)
     const [inProgress, setInProgress]=useState(false)
@@ -22,7 +23,6 @@ export const Shortener=()=>{
             
         }
     },[])
-    
     const handleClick=()=>{
         setInProgress(true)
         axios.get('https://api.shrtco.de/v2/shorten?url='+textRef.current.value)
@@ -45,13 +45,13 @@ export const Shortener=()=>{
     return(
         <div>
             <Backdrop open={inProgress} style={{zIndex:'100'}}><CircularProgress /></Backdrop>
-            <input placeholder="Shorten a link here.." ref={textRef}/><Button variant="contained" color="primary" onClick={handleClick}>Shorten it!</Button>
-            {(arrayOfOriginalLinks.length!==0) && <div>
-                    {arrayOfOriginalLinks.map((link1)=>(<p >{link1}</p>))}
+            <div><input className="inputText" placeholder="Shorten a link here.." ref={textRef}/><Button variant="contained" color="primary" onClick={handleClick}>Shorten it!</Button></div>
+            {(arrayOfOriginalLinks.length!==0) && <div className="originalLink">
+                    {arrayOfOriginalLinks.map((link1)=>(<><p >{link1}</p></>))}
                 </div>}
-            {(arrayOfShortLinks.length!==0) && <div>
+            {(arrayOfShortLinks.length!==0) && <div className="shortenedLink">
                     {arrayOfShortLinks.map((link2)=>
-                    <p>{link2}<Button color="primary" onClick={()=>navigator.clipboard.writeText(link2)}>Copy to Clipboard</Button></p>)}
+                    <><p >{link2}<Button variant="outlined" color="primary" onClick={()=>navigator.clipboard.writeText(link2)}>Copy to Clipboard</Button></p></>)}
                 </div>}
         </div>
     )
