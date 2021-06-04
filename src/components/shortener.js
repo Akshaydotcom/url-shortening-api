@@ -31,6 +31,7 @@ export const Shortener=()=>{
             setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,res.data.result.original_link])
             setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,res.data.result.full_short_link])
             setInProgress(false)
+            textRef.current.value=''
             }
         })
     }
@@ -43,9 +44,9 @@ export const Shortener=()=>{
     },[arrayOfShortLinks])
    
     return(
-        <div>
+        <div className="container">
             <Backdrop open={inProgress} style={{zIndex:'100'}}><CircularProgress /></Backdrop>
-            <div><input className="inputText" placeholder="Shorten a link here.." ref={textRef}/><Button variant="contained" color="primary" onClick={handleClick}>Shorten it!</Button></div>
+            <div ><input className="inputText" placeholder="Shorten a link here.." ref={textRef}/><Button variant="contained" color="primary" onClick={handleClick}>Shorten it!</Button></div>
             {(arrayOfOriginalLinks.length!==0) && <div className="originalLink">
                     {arrayOfOriginalLinks.map((link1)=>(<><p >{link1}</p></>))}
                 </div>}
