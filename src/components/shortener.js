@@ -25,16 +25,22 @@ export const Shortener=()=>{
         }
     },[])
     const handleClick=()=>{
-        setInProgress(true)
-        axios.get('https://api.shrtco.de/v2/shorten?url='+textRef.current.value)
-        .then(res=>{
-            if(res.data.ok===true){
-            setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,res.data.result.original_link])
-            setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,res.data.result.full_short_link])
-            setInProgress(false)
+        if(textRef.current.value.trim().length!==0){
+            setInProgress(true)
+            axios.get('https://api.shrtco.de/v2/shorten?url='+textRef.current.value)
+            .then(res=>{
+                if(res.data.ok===true){
+                setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,res.data.result.original_link])
+                setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,res.data.result.full_short_link])
+                setInProgress(false)
+                textRef.current.value=''
+                }
+            })
+        }
+        else{
+            alert('Enter a link')
             textRef.current.value=''
-            }
-        })
+        }
     }
     useEffect(()=>{
         sessionStorage.setItem('originalLink',arrayOfOriginalLinks.toString())
