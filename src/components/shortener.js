@@ -1,66 +1,80 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useRef, useState} from 'react'
-import axios from 'axios'
-import Button from '@material-ui/core/Button'
-import Backdrop  from '@material-ui/core/Backdrop'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import '../styles/shortener.css'
-export const Shortener=()=>{
-    const textRef=useRef(null)
-    const [inProgress, setInProgress]=useState(false)
-    let [arrayOfOriginalLinks,setArrayOfOriginalLinks]=React.useState([])
-    let [arrayOfShortLinks, setArrayOfShortLinks]=React.useState([])
-    let x1=sessionStorage.getItem('originalLink')
-    let x2=sessionStorage.getItem('shortLink')
-    useEffect(()=>{
-        if(x1 && x1.split(',').length>1)
-        { x1.split(',').forEach(element=> setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,element]))
-           }
-        if(x2 && x2.split(',').length>1)
-        {
-            x2.split(',').forEach(element => {
-                setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,element])
-            });
-            
-        }
-    },[])
-    const handleClick=()=>{
-        if(textRef.current.value.trim().length!==0){
-            setInProgress(true)
-            axios.get('https://api.shrtco.de/v2/shorten?url='+textRef.current.value)
-            .then(res=>{
-                if(res.data.ok===true){
-                setArrayOfOriginalLinks(arrayOfOriginalLinks=>[...arrayOfOriginalLinks,res.data.result.original_link])
-                setArrayOfShortLinks(arrayOfShortLinks=>[...arrayOfShortLinks,res.data.result.full_short_link])
-                setInProgress(false)
-                textRef.current.value=''
-                }
-            })
-        }
-        else{
-            alert('Enter a link')
-            textRef.current.value=''
-        }
-    }
-    useEffect(()=>{
-        sessionStorage.setItem('originalLink',arrayOfOriginalLinks.toString())
-    },[arrayOfOriginalLinks])
+import { Button, Box, TextField, Grid } from "@mui/material";
+import React from "react";
+import { useState, useEffect, useRef } from "react";
+import ShortUrlItem from "./shortUrlItem";
 
-    useEffect(()=>{
-        sessionStorage.setItem('shortLink',arrayOfShortLinks.toString())
-    },[arrayOfShortLinks])
-   
-    return(
-        <div className="container">
-            <Backdrop open={inProgress} style={{zIndex:'100'}}><CircularProgress /></Backdrop>
-            <div ><input className="inputText" placeholder="Shorten a link here.." ref={textRef}/><Button variant="contained" color="primary" onClick={handleClick}>Shorten it!</Button></div>
-            {(arrayOfOriginalLinks.length!==0) && <div className="originalLink">
-                    {arrayOfOriginalLinks.map((link1)=>(<><p >{link1}</p></>))}
-                </div>}
-            {(arrayOfShortLinks.length!==0) && <div className="shortenedLink">
-                    {arrayOfShortLinks.map((link2)=>
-                    <><p >{link2}<Button variant="outlined" color="primary" onClick={()=>navigator.clipboard.writeText(link2)}>Copy to Clipboard</Button></p></>)}
-                </div>}
-        </div>
-    )
+export default function Shortener() {
+  //Get Input from user on button click
+  //store Results in Session Storage
+  //render the Results
+  const [Url, setURL] = useState([]);
+  const inputRef = useRef(null);
+  function submitHandler() {
+    const input = inputRef.current.value;
+    const regex = new RegExp(
+        // eslint-disable-next-line
+      `(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})`
+    );
+    if (regex.test(input)) {
+      console.log("Matched");
+      callAPI(input);
+    } else {
+      console.log("No match");
+    }
+  }
+
+  function callAPI(input) {
+    const obj1 = {
+      oldUrl: input,
+      shortUrl: "",
+    };
+    fetch(`https://v.gd/create.php?format=json&url=${input}`)
+      .then((response) => response.json())
+      .then((data) => {
+        obj1.shortUrl = data.shorturl;
+        setURL([...Url, obj1]);
+      });
+  }
+
+  return (
+    <>
+      <div>
+        <Box className="input-container">
+            <Grid container spacing={2} alignItems={'center'}>
+                <Grid item xs={12} sm={12} md={12} lg={11} xl={11}>
+                    <TextField
+                        fullWidth
+                        variant="filled"
+                        ref={inputRef}
+                        id="url"
+                        name="url"
+                        placeholder="Shorten a link here..."
+                        sx={{backgroundColor:"white", mr:2}}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={12} md={12} lg={1} xl={1}>
+                    <Button
+                        variant="contained"
+                        disableElevation
+                        sx={{
+                        backgroundColor: "hsl(180, 66%, 49%)",
+                        borderRadius: "5px",
+                        display: "block",
+                        maxWidth: 200,
+                        }}
+                        className="Button"
+                        onClick={submitHandler}
+                    >
+                        Shorten It!
+                    </Button>
+                </Grid>
+            </Grid>
+        </Box>
+        {Url.length > 0 &&
+          Url.map((urlObject, index) => (
+            <ShortUrlItem key={index} urlObject={urlObject} />
+          ))}
+      </div>
+    </>
+  );
 }

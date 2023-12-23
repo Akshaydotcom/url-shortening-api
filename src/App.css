@@ -1,0 +1,112 @@
+.App{
+    font-family: 'Poppins';
+    font-size: 18px;
+}
+
+h1{
+    font-size: 2.5em;
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+h3{
+    font-size: 2em;
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+.first-article{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    padding-top: 5%;  
+    padding-bottom: 20%  
+}
+
+.first-article p{
+    margin: 0;
+    padding: 0;
+    color: hsl(0, 0%, 75%);
+}
+
+.second-article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.second-article p{
+    padding: 0;
+    color: hsl(0, 0%, 75%);
+    margin-top: 0;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: start;
+}
+
+.second-article header{
+    padding-bottom: 5rem
+}
+
+.second-article h4{
+    margin-top: 0;
+}
+
+.img-container{
+    background-color: hsl(257, 27%, 26%);
+    border-radius: 100%;
+    border: 20px solid hsl(257, 27%, 26%);
+    display: flex;
+    width: fit-content;
+    position: relative;
+    bottom: 15%;
+}
+
+section{
+    height: 400px;
+}
+
+.bgImg{
+    background-image: url('./images/bg-boost-desktop.svg');
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.footer-list{
+    color: hsl(0, 0%, 75%);
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 0.75rem;
+}
+
+.footer-list li{
+    padding-bottom: 0.5rem;
+}
+
+.footer-list li:hover{
+    color: hsl(180, 66%, 49%);
+    cursor: pointer;
+}
+
+.Button:hover{
+    background-color: aquamarine;
+}
+
+.input-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+    background-image: url('./images/bg-shorten-desktop.svg');
+    background-repeat: no-repeat;
+    background-color:  hsl(257, 27%, 26%);
+    border-radius: 5px;
+    width:75%
+}
+
+@media screen and (max-width: 900px){
+    section{
+        height:1200px
+    }
+}
