@@ -94,16 +94,30 @@ section{
     background-color: aquamarine;
 }
 
+.shortener-container{
+    background-image: linear-gradient(white 50%, hsl(0, 0%, 95%) 50%);
+}
+
 .input-container{
     display: flex;
     justify-content: space-around;
-    padding: 1em;
+    padding: 0.5em;
     background-image: url('./images/bg-shorten-desktop.svg');
     background-repeat: no-repeat;
     background-color:  hsl(257, 27%, 26%);
     border-radius: 5px;
-    width:75%
+    width:50%
 }
+
+.shortUrl-container{
+    background-color: white;
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    width:50%;
+    border: 9px solid hsl(0, 0%, 95%) ;
+}
+
 
 @media screen and (max-width: 900px){
     section{

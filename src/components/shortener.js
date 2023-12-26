@@ -1,10 +1,9 @@
-import { Button, Box, TextField, Grid } from "@mui/material";
+import { Button, TextField, Grid } from "@mui/material";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import ShortUrlItem from "./shortUrlItem";
 
 export default function Shortener() {
-  //Get Input from user on button click
   //store Results in Session Storage
   //render the Results
   const [Url, setURL] = useState([]);
@@ -38,14 +37,13 @@ export default function Shortener() {
 
   return (
     <>
-      <div>
-        <Box className="input-container">
-            <Grid container spacing={2} alignItems={'center'}>
+      <div className="shortener-container">
+        <Grid container spacing={2} alignItems={'center'} className="input-container">
                 <Grid item xs={12} sm={12} md={12} lg={11} xl={11}>
                     <TextField
                         fullWidth
                         variant="filled"
-                        ref={inputRef}
+                        inputRef={inputRef}
                         id="url"
                         name="url"
                         placeholder="Shorten a link here..."
@@ -68,8 +66,7 @@ export default function Shortener() {
                         Shorten It!
                     </Button>
                 </Grid>
-            </Grid>
-        </Box>
+        </Grid>
         {Url.length > 0 &&
           Url.map((urlObject, index) => (
             <ShortUrlItem key={index} urlObject={urlObject} />

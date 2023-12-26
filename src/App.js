@@ -102,7 +102,7 @@ function App() {
           </Toolbar>
         </Container>
       </AppBar>
-      <Box sx={{ pl: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 } }}>
+      <Box sx={{ px: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 } }}>
         <Grid container>
             <Grid item xs={12} sm={12} md={4} lg={4} xl={6}>
             <article className="first-article">
@@ -135,10 +135,10 @@ function App() {
             </Grid>
         </Grid>
       </Box>
-      <Box sx={{ pl: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 }}}>
+      <Box sx={{ backgroundImage:'linear-gradient(white 48px, hsl(0, 0%, 95%) 0px)', px: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 }}}>
           <Shortener />
       </Box>
-      <Box sx={{ pl: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 }, backgroundColor:'hsl(0, 0%, 95%)'}}>
+      <Box sx={{ px: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 }, backgroundColor:'hsl(0, 0%, 95%)'}}>
         <article className="second-article">
           <header>
             <h3>
