@@ -4,10 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import ShortUrlItem from "./shortUrlItem";
 
 export default function Shortener() {
-  //store Results in Session Storage
-  //render the Results
   const [Url, setURL] = useState([]);
   const inputRef = useRef(null);
+  
   function submitHandler() {
     const input = inputRef.current.value;
     const regex = new RegExp(
@@ -15,8 +14,8 @@ export default function Shortener() {
       `(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})`
     );
     if (regex.test(input)) {
-      console.log("Matched");
       callAPI(input);
+      inputRef.current.value=''
     } else {
       console.log("No match");
     }
@@ -35,6 +34,16 @@ export default function Shortener() {
       });
   }
 
+  useEffect(()=>{
+    if(Url.length>0) sessionStorage.setItem('url', JSON.stringify(Url))
+  },[Url])
+
+  useEffect(()=>{
+    let sessionUrl=sessionStorage.getItem('url')
+    if(sessionUrl!==null){
+      setURL(JSON.parse(sessionUrl))
+    }
+  },[])
   return (
     <>
       <div className="shortener-container">
