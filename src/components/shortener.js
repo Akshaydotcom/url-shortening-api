@@ -6,7 +6,7 @@ import ShortUrlItem from "./shortUrlItem";
 export default function Shortener() {
   const [Url, setURL] = useState([]);
   const inputRef = useRef(null);
-  
+
   function submitHandler() {
     const input = inputRef.current.value;
     const regex = new RegExp(
@@ -68,6 +68,8 @@ export default function Shortener() {
                         borderRadius: "5px",
                         display: "block",
                         maxWidth: 200,
+                        fontFamily:'Poppins',
+                        fontWeight:'bold'
                         }}
                         className="Button"
                         onClick={submitHandler}
