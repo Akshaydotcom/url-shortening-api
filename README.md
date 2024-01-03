@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Why The Refresh
 
-- Couple of Reasons, the main being I didn't like the layout of the previous attempt, and 2. The API used to shorten URLs has stopped working.
+- Couple of Reasons, the main being I didn't like the layout of the previous attempt, and second The API used to shorten URLs has stopped working.
 
 
 ## Author

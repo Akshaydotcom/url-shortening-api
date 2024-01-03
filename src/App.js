@@ -13,7 +13,6 @@ import icon2 from './images/icon-detailed-records.svg'
 import icon3 from './images/icon-fully-customizable.svg'
 import illustration from './images/illustration-working.svg'
 import bgBoost from './images/bg-boost-desktop.svg'
-import bgBoostMobile from './images/bg-boost-mobile.svg'
 import { Grid, Paper } from "@mui/material";
 import { Facebook, Twitter, Pinterest, Instagram } from "@mui/icons-material";
 import Shortener from "./components/shortener";
