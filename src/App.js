@@ -8,16 +8,22 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import icon1 from './images/icon-brand-recognition.svg'
-import icon2 from './images/icon-detailed-records.svg'
-import icon3 from './images/icon-fully-customizable.svg'
+import icon1 from "./images/icon-brand-recognition.svg";
+import icon2 from "./images/icon-detailed-records.svg";
+import icon3 from "./images/icon-fully-customizable.svg";
 import illustration from './images/illustration-working.svg'
 import bgBoost from './images/bg-boost-desktop.svg'
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Facebook, Twitter, Pinterest, Instagram } from "@mui/icons-material";
 import Shortener from "./components/shortener";
+import AdvancedStats from "./components/advancedStats";
+import FooterLinks from "./components/footerLinks";
 
 function App() {
+  const features=['Link Shortening','Branded Links','Analytics']
+  const resources=['Blog','Developers','Suport']
+  const companies=['About','Our Team','Careers','Contact']
+
   return (
     <div className="App">
       <AppBar position="static" color="transparent" elevation={0}>
@@ -150,48 +156,12 @@ function App() {
           </header>
           <section>
             <Grid container spacing={4}>
-              <Grid item xs={12} sm={12} md={4} lg={4} xl={4} alignSelf={'flex-start'}>
-                <Paper className="paper-item" sx={{height:300, width:'90%', padding:2}}>
-                <div className="img-container">
-                  <img src={icon1} alt="Icon for Brand Recognition"/>
-                </div>
-                <div>
-                <h4>Brand Recognition</h4>
-                <p>
-                Boost your brand recognition with each click. Generic links don’t 
-                mean a thing. Branded links help instil confidence in your content.
-                </p>
-                </div>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={12} md={4} lg={4} xl={4} alignSelf={'center'} >
-              <Paper className="paper-item" sx={{height:300, width:'90%', padding:2}}>
-                <div className="img-container">
-                  <img src={icon2} alt="Icon for Brand Recognition"/>
-                </div>
-                <div>
-                <h4>Detailed Records</h4>
-                <p>
-                Gain insights into who is clicking your links. Knowing when and where 
-                people engage with your content helps inform better decisions.
-                </p>
-                </div>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={12} md={4} lg={4} xl={4} alignSelf={'flex-end'}>
-              <Paper className="paper-item" sx={{height:300, width:'90%', padding:2}}>
-                <div className="img-container">
-                  <img src={icon3} alt="Icon for Brand Recognition"/>
-                </div>
-                <div>
-                <h4>Fully Customizable</h4>
-                <p>
-                Improve brand awareness and content discoverability through customizable 
-                links, supercharging audience engagement.
-                </p>
-                </div>
-                </Paper>
-              </Grid>
+              <AdvancedStats icon={icon1} title='Brand Recognition'>Boost your brand recognition with each click. Generic links don’t
+            mean a thing. Branded links help instil confidence in your content.</AdvancedStats>
+            <AdvancedStats icon={icon2} title='Detailed Records'>Gain insights into who is clicking your links. Knowing when and where 
+                people engage with your content helps inform better decisions.</AdvancedStats>
+            <AdvancedStats icon={icon3} title='Fully Customizable'>Improve brand awareness and content discoverability through customizable 
+                links, supercharging audience engagement.</AdvancedStats>
             </Grid>
           </section>
         </article>
@@ -242,52 +212,9 @@ function App() {
               />
             </svg>
           </Grid>
-          <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-          <Typography sx={{color:'white'}}>Features</Typography>
-          <ul className="footer-list">
-            <li>
-            Link Shortening
-            </li>
-            <li>
-            Branded Links
-            </li>
-            <li>
-            Analytics
-            </li>
-          </ul>
-          </Grid>
-          <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-          
-          <Typography sx={{color:'white'}}>Resources</Typography>
-          <ul className="footer-list">
-            <li>
-            Blog
-            </li>
-            <li>
-            Developers
-            </li>
-            <li>
-            Suport
-            </li>
-          </ul>
-          </Grid>
-          <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-          <Typography sx={{color:'white'}}>Company</Typography>
-          <ul className="footer-list">
-            <li>
-            About
-            </li>
-            <li>
-            Our Team
-            </li>
-            <li>
-            Careers
-            </li>
-            <li>
-            Contact
-            </li>
-          </ul>
-          </Grid>
+            <FooterLinks title='Features' links={features} />
+            <FooterLinks title='Resources' links={resources} />
+            <FooterLinks title='Company' links={companies} />
           <Grid item xs={12} sm={12} md={2} lg={2} xl={2} >
           <Facebook sx={{color:"white", marginLeft:2}} />
           <Twitter sx={{color:'white', marginLeft:2}} />
