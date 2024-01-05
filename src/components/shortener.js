@@ -56,15 +56,15 @@ export default function Shortener() {
     }
   }, []);
   return (
-    <>
       <div className="shortener-container">
         <Grid
           container
           spacing={2}
+          columnSpacing={0}
           alignItems={"center"}
           className="input-container"
         >
-          <Grid item xs={12} sm={12} md={12} lg={11} xl={11}>
+          <Grid item xs={12} sm={12} md={12} lg={10} xl={10}>
             <TextField
               fullWidth
               variant="filled"
@@ -72,10 +72,10 @@ export default function Shortener() {
               id="url"
               name="url"
               placeholder="Shorten a link here..."
-              sx={{ backgroundColor: "white", mr: 2 }}
+              sx={{ backgroundColor: "white" }}
             />
           </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={1} xl={1}>
+          <Grid item xs={12} sm={12} md={12} lg={2} xl={2}>
             <Button
               variant="contained"
               disableElevation
@@ -106,6 +106,5 @@ export default function Shortener() {
           message={errorMessage}
         />
       </div>
-    </>
   );
 }

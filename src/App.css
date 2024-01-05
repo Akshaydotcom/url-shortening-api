@@ -132,3 +132,10 @@ section{
         height:1200px
     }
 }
+
+@media screen and (max-width: 700px) {
+    .small{
+        height: 300px !important;
+        width: 375px !important;
+    }
+}
