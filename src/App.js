@@ -92,7 +92,7 @@ function App() {
           </Toolbar>
         </Container>
       </AppBar>
-      <Box sx={{ px: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 } }}>
+      <Box sx={{ px: { xl: 38, lg: 6, md: 6, sm: 5, xs: 4 } }}>
         <Grid container>
           <Grid item xs={12} sm={12} md={4} lg={4} xl={6}>
             <article className="first-article">
@@ -136,7 +136,7 @@ function App() {
       </Box>
       <Box
         sx={{
-          px: { xl: 38, lg: 6, md: 6, sm: 0, xs: 0 },
+          px: { xl: 38, lg: 6, md: 6, sm: 5, xs: 4 },
           backgroundColor: "hsl(0, 0%, 95%)",
         }}
       >

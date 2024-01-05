@@ -26,7 +26,7 @@ export default function ShortUrlItem(props){
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={3} xl={3} justifySelf={'flex-end'}>
             <Typography sx={{color:'hsl(180, 66%, 49%)', fontSize:'1em'}}>
-                <span>{props.urlObject.shortUrl}</span>
+                <span><a href={props.urlObject.shortUrl} target="_new">{props.urlObject.shortUrl}</a></span>
             </Typography>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={1} xl={1}>
