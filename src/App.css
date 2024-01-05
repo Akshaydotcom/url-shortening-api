@@ -126,7 +126,10 @@ section{
     font-family: 'Poppins' !important;
 }
 
-
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
 @media screen and (max-width: 900px){
     section{
         height:1200px

@@ -228,10 +228,10 @@ function App() {
           <FooterLinks title="Company" links={companies} />
           </Grid>
           <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-            <Facebook sx={{ color: "white", marginLeft: 2 }} />
-            <Twitter sx={{ color: "white", marginLeft: 2 }} />
-            <Pinterest sx={{ color: "white", marginLeft: 2 }} />
-            <Instagram sx={{ color: "white", marginLeft: 2 }} />
+            <a href='https://www.facebook.com/' target="_new"><Facebook sx={{ color: "white", marginLeft: 2 }} /></a>
+            <a href='https://twitter.com/' target="_new"><Twitter sx={{ color: "white", marginLeft: 2 }} /></a>
+            <a href='https://www.pinterest.com/' target="_new"><Pinterest sx={{ color: "white", marginLeft: 2 }} /></a>
+            <a href='https://www.instagram.com/' target="_new"><Instagram sx={{ color: "white", marginLeft: 2 }} /></a>
           </Grid>
         </Grid>
       </Box>
